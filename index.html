@@ -210,6 +210,89 @@
   input[type="number"]::-webkit-outer-spin-button,
   input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
   input[type="number"] { -moz-appearance: textfield; }
+
+  /* ── Responsive ─────────────────────────────────────────── */
+  .container { padding: 0 20px; }
+
+  /* Nav — hide text links on small screens, keep phone + CTA */
+  @media (max-width: 767px) {
+    .nav-links { display: none !important; }
+    .nav-phone-text { display: none !important; }
+    .nav-inner { height: 58px !important; }
+  }
+  @media (max-width: 480px) {
+    .container { padding: 0 16px; }
+  }
+
+  /* Hero — stack on mobile */
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr !important; gap: 36px !important; }
+    .hero-grid > aside { order: -1; }
+  }
+
+  /* Products grid — 2 col on tablet, 1 col on phone */
+  @media (max-width: 900px) {
+    .products-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  }
+  @media (max-width: 560px) {
+    .products-grid { grid-template-columns: 1fr !important; }
+    .products-header { grid-template-columns: 1fr !important; }
+    .products-header .btn { display: none !important; }
+  }
+
+  /* About — stack on tablet */
+  @media (max-width: 900px) {
+    .about-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
+    .about-portrait { max-width: 280px !important; margin: 0 auto; }
+  }
+
+  /* Process — 2-col on tablet, 1-col on phone */
+  @media (max-width: 900px) {
+    .process-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 32px !important; }
+    .process-line { display: none !important; }
+  }
+  @media (max-width: 560px) {
+    .process-grid { grid-template-columns: 1fr !important; }
+  }
+
+  /* Calculator — stack on tablet */
+  @media (max-width: 900px) {
+    .calc-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+    .calc-card { padding: 24px !important; }
+  }
+
+  /* Apply — stack on tablet */
+  @media (max-width: 900px) {
+    .apply-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+  }
+
+  /* Footer — stack on tablet */
+  @media (max-width: 900px) {
+    .footer-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+  }
+  @media (max-width: 560px) {
+    .footer-bottom { flex-direction: column !important; gap: 8px !important; }
+  }
+
+  /* Section headings — scale down on mobile */
+  @media (max-width: 560px) {
+    .h-section { font-size: 32px !important; }
+  }
+
+  /* About bullets — 1 col on phone */
+  @media (max-width: 560px) {
+    .about-bullets { grid-template-columns: 1fr !important; }
+  }
+
+  /* Section padding — tighten on mobile */
+  @media (max-width: 767px) {
+    #top    { padding-top: 36px !important; padding-bottom: 56px !important; }
+    #loans  { padding: 72px 0 56px !important; }
+    #about  { padding: 64px 0 !important; }
+    #process { padding: 72px 0 !important; }
+    #calculator { padding: 72px 0 !important; }
+    #apply  { padding: 72px 0 !important; }
+  }
 </style>
 </head>
 <body>

@@ -19,7 +19,7 @@ function Nav() {
         height: 68,
       }}>
         <Wordmark />
-        <div style={{ display: "flex", gap: 28, alignItems: "center" }}>
+        <div className="nav-links" style={{ display: "flex", gap: 28, alignItems: "center" }}>
           {["Loans", "Process", "Calculator", "About"].map((l) => (
             <a key={l} href={`#${l.toLowerCase()}`} style={{
               fontSize: 14, color: "var(--ink)", opacity: 0.78,
@@ -27,13 +27,13 @@ function Nav() {
           ))}
         </div>
         <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
-          <a href="tel:+18326292892" style={{
+          <a href="tel:+18326292892" className="nav-phone-text" style={{
             display: "inline-flex", alignItems: "center", gap: 8,
             fontSize: 14, color: "var(--ink)", fontFamily: "var(--mono)",
           }}>
             <Icon.phone /> (832) 629-2892
           </a>
-          <a href="https://1922182.my1003app.com" target="_blank" rel="noopener noreferrer" className="btn btn-primary">Apply now <Icon.arrow /></a>
+          <a href="https://1922182.my1003app.com" target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ fontSize: 13, padding: "10px 14px" }}>Apply now <Icon.arrow /></a>
         </div>
       </div>
     </nav>
@@ -55,7 +55,7 @@ function Hero() {
       <div className="container" style={{
         position: "relative",
         display: "grid", gridTemplateColumns: "1.05fr 0.95fr", gap: 56, alignItems: "center",
-      }}>
+      }} className="hero-grid">
         <div className="fade-up">
           <div className="eyebrow" style={{ display: "inline-flex", alignItems: "center", gap: 10 }}>
             <span style={{
@@ -205,7 +205,7 @@ function Products() {
         <div style={{
           display: "grid", gridTemplateColumns: "1fr auto", alignItems: "end", gap: 24,
           marginBottom: 48,
-        }}>
+        }} className="products-header">
           <SectionHead
             eyebrow="What I can help with"
             title="Different loans for different people. Here's what I do."
@@ -218,7 +218,7 @@ function Products() {
           display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 0,
           border: "1px solid var(--hairline)", borderRadius: "var(--r-lg)",
           background: "var(--paper)", overflow: "hidden",
-        }}>
+        }} className="products-grid">
           {items.map((it, i) => {
             const col = i % 3, row = Math.floor(i / 3);
             const borderRight = col < 2 ? "1px solid var(--hairline)" : "none";
@@ -274,9 +274,9 @@ function About() {
     }}>
       <div className="container" style={{
         display: "grid", gridTemplateColumns: "0.75fr 1.25fr", gap: 80, alignItems: "center",
-      }}>
+      }} className="about-grid">
         {/* Portrait card */}
-        <div style={{ position: "relative", maxWidth: 340, width: "100%" }}>
+        <div className="about-portrait" style={{ position: "relative", maxWidth: 340, width: "100%" }}>
           <div style={{
             borderRadius: "var(--r-lg)",
             overflow: "hidden",
@@ -326,7 +326,7 @@ function About() {
             schedule.
           </p>
 
-          <ul style={{ listStyle: "none", padding: 0, margin: "32px 0 0", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "14px 28px" }}>
+          <ul className="about-bullets" style={{ listStyle: "none", padding: 0, margin: "32px 0 0", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "14px 28px" }}>
             {[
               "First-time buyer focused",
               "Plain-English explanations",
@@ -371,13 +371,13 @@ function Process() {
             sub="The mortgage process isn't actually mysterious — it just usually isn't explained. Here's the whole thing on one page."
           />
 
-        <div style={{
+        <div className="process-grid" style={{
           marginTop: 56,
           display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 0,
           position: "relative",
         }}>
           {/* connecting line */}
-          <div aria-hidden="true" style={{
+          <div aria-hidden="true" className="process-line" style={{
             position: "absolute", left: "8%", right: "8%", top: 24, height: 1,
             background: "var(--hairline)",
           }}/>
@@ -619,7 +619,7 @@ function Calculator() {
           sub="Drag the sliders to model different scenarios. This is for illustration only — your actual quote will look different."
         />
 
-        <div className="card" style={{
+        <div className="card calc-grid" style={{
           marginTop: 56, padding: 40,
           display: "grid", gridTemplateColumns: "1fr 1fr", gap: 56,
         }}>
@@ -806,7 +806,7 @@ function Apply() {
       padding: "120px 0",
       background: "color-mix(in oklab, var(--canvas), white 30%)",
     }}>
-      <div className="container" style={{
+      <div className="container apply-grid" style={{
         display: "grid", gridTemplateColumns: "0.95fr 1.05fr", gap: 64, alignItems: "center",
       }}>
         <div>
@@ -902,7 +902,7 @@ function Footer() {
       paddingTop: 80, paddingBottom: 32,
     }}>
       <div className="container">
-        <div style={{
+        <div className="footer-grid" style={{
           display: "grid", gridTemplateColumns: "1.2fr 1fr 1fr", gap: 56, alignItems: "start",
         }}>
           {/* Big sign-off */}
@@ -976,7 +976,7 @@ function Footer() {
           background: "rgba(255,255,255,0.1)",
         }}/>
 
-        <div style={{
+        <div className="footer-bottom" style={{
           display: "flex", gap: 24, justifyContent: "space-between",
           fontFamily: "var(--mono)", fontSize: 11, color: "rgba(255,255,255,0.5)",
           flexWrap: "wrap",
