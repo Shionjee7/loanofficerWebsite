@@ -62,14 +62,14 @@ function Nav() {
         </div>
       </div>
 
-      {/* Mobile menu drawer — full-screen, solid background */}
-      {open && (
+      {/* Mobile menu drawer — rendered at body level via portal */}
+      {open && ReactDOM.createPortal(
         <div
           style={{
             position: "fixed", inset: 0, zIndex: 9999,
-            background: "#F6F2EA",
+            background: "#FFFFFF",
             display: "flex", flexDirection: "column",
-            animation: "fadeUp .2s ease both",
+            animation: "fadeUp .22s cubic-bezier(.16,1,.3,1) both",
           }}
         >
           {/* Menu header — mirrors nav with close button */}
@@ -156,7 +156,8 @@ function Nav() {
               Start a secure application <Icon.arrow size={16} />
             </a>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </nav>
   );
