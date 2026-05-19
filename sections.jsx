@@ -42,6 +42,7 @@ function Nav() {
             <Icon.phone /> (832) 629-2892
           </a>
           <a href="https://1922182.my1003app.com" target="_blank" rel="noopener noreferrer" className="btn btn-primary nav-apply" style={{ fontSize: 13, padding: "10px 14px" }}>Apply now <Icon.arrow /></a>
+          <a href="https://1922182.my1003app.com" target="_blank" rel="noopener noreferrer" className="btn btn-primary nav-apply-mobile" style={{ fontSize: 13, padding: "10px 16px", display: "none" }}>Apply</a>
           {/* Hamburger button — only visible on mobile via CSS */}
           <button
             className="nav-burger"
