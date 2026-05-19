@@ -244,7 +244,17 @@
     .container    { padding: 0 18px; }
     .nav-links    { display: none !important; }
     .nav-phone-text { display: none !important; }
+    .nav-apply    { display: none !important; }
+    .nav-burger   { display: inline-flex !important; }
     .nav-inner    { height: 56px !important; }
+
+    /* Center About section copy on phones */
+    .about-grid > div:last-child { text-align: center; }
+    .about-grid > div:last-child .h-section { text-align: center; margin-left: auto; margin-right: auto; }
+    .about-grid > div:last-child p { margin-left: auto !important; margin-right: auto !important; }
+    .about-bullets { justify-items: center; }
+    .about-bullets li { justify-content: center; }
+    .about-grid > div:last-child > div:last-child { justify-content: center !important; }
     .h-section    { font-size: 26px !important; line-height: 1.15 !important; }
     .h-display    { font-size: clamp(32px, 8.5vw, 42px) !important; }
 
