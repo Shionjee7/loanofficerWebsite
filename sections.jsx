@@ -63,101 +63,113 @@ function Nav() {
         </div>
       </div>
 
-      {/* Mobile menu drawer — rendered at body level via portal */}
+      {/* Mobile menu — rendered at body level via portal to escape stacking context */}
       {open && ReactDOM.createPortal(
-        <div
-          style={{
-            position: "fixed", inset: 0, zIndex: 9999,
-            background: "#FFFFFF",
-            display: "flex", flexDirection: "column",
-            animation: "fadeUp .22s cubic-bezier(.16,1,.3,1) both",
-          }}
-        >
-          {/* Menu header — mirrors nav with close button */}
-          <div style={{
-            display: "flex", alignItems: "center", justifyContent: "space-between",
-            padding: "12px 18px", height: 56,
-            borderBottom: "1px solid var(--hairline)",
-            background: "#F6F2EA",
-          }}>
-            <Wordmark />
-            <button
-              aria-label="Close menu"
-              onClick={() => setOpen(false)}
-              style={{
-                background: "transparent", border: "1px solid var(--hairline)",
-                borderRadius: 8, width: 42, height: 42, padding: 0,
-                display: "inline-flex", alignItems: "center", justifyContent: "center", cursor: "pointer",
-              }}
-            >
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
-                <line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/>
-              </svg>
-            </button>
-          </div>
-
-          {/* Menu content */}
-          <div style={{
-            flex: 1, overflowY: "auto",
-            padding: "24px 24px 32px",
-            display: "flex", flexDirection: "column",
-          }}>
-            {/* Big section links */}
-            <nav style={{ display: "flex", flexDirection: "column" }}>
-              {links.map((l, i) => (
-                <a key={l} href={`#${l.toLowerCase()}`} onClick={() => setOpen(false)} style={{
-                  display: "flex", alignItems: "center", justifyContent: "space-between",
-                  padding: "20px 4px",
-                  fontFamily: "var(--serif)", fontSize: 26, fontWeight: 500,
-                  color: "var(--ink)", letterSpacing: "-0.01em",
-                  borderBottom: i < links.length - 1 ? "1px solid var(--hairline)" : "none",
-                }}>
-                  <span>{l}</span>
-                  <span style={{ color: "var(--muted)" }}><Icon.arrow size={18} /></span>
-                </a>
-              ))}
-            </nav>
-
-            {/* Spacer */}
-            <div style={{ flex: 1, minHeight: 24 }} />
-
-            {/* Contact block */}
+        <>
+          {/* Backdrop */}
+          <div
+            onClick={() => setOpen(false)}
+            style={{
+              position: "fixed", inset: 0, zIndex: 9998,
+              background: "rgba(11,42,74,0.45)",
+              backdropFilter: "blur(4px)",
+              WebkitBackdropFilter: "blur(4px)",
+              animation: "fadeInOverlay .2s ease both",
+            }}
+          />
+          {/* Drawer panel */}
+          <div
+            style={{
+              position: "fixed", top: 0, right: 0, bottom: 0,
+              width: "min(320px, 88vw)",
+              zIndex: 9999,
+              background: "#FFFFFF",
+              display: "flex", flexDirection: "column",
+              boxShadow: "-8px 0 48px rgba(0,0,0,0.18)",
+              animation: "slideInRight .28s cubic-bezier(.16,1,.3,1) both",
+            }}
+          >
+            {/* Drawer header */}
             <div style={{
-              marginTop: 24, padding: 20,
-              background: "var(--paper)",
-              border: "1px solid var(--hairline)",
-              borderRadius: 14,
-              display: "flex", flexDirection: "column", gap: 14,
+              display: "flex", alignItems: "center", justifyContent: "space-between",
+              padding: "0 20px", height: 64, flexShrink: 0,
+              borderBottom: "1px solid #EEEBE4",
             }}>
-              <div className="eyebrow">Get in touch</div>
-              <a href="tel:+18326292892" onClick={() => setOpen(false)} style={{
-                display: "flex", alignItems: "center", gap: 12,
-                fontFamily: "var(--mono)", fontSize: 17, color: "var(--ink)", fontWeight: 500,
-              }}>
-                <Icon.phone size={18} /> (832) 629-2892
-              </a>
-              <a href="mailto:shion@ravihomeloans.com" onClick={() => setOpen(false)} style={{
-                display: "flex", alignItems: "center", gap: 12,
-                fontSize: 15, color: "var(--ink)",
-              }}>
-                <Icon.mail size={16} /> shion@ravihomeloans.com
-              </a>
+              <span style={{ fontFamily: "var(--serif)", fontSize: 16, fontWeight: 600, color: "var(--ink)" }}>Menu</span>
+              <button
+                aria-label="Close menu"
+                onClick={() => setOpen(false)}
+                style={{
+                  background: "#F4F1EB", border: "none",
+                  borderRadius: 50, width: 36, height: 36, padding: 0,
+                  display: "inline-flex", alignItems: "center", justifyContent: "center",
+                  cursor: "pointer", color: "var(--ink)",
+                }}
+              >
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
+                  <line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/>
+                </svg>
+              </button>
             </div>
 
-            {/* Apply CTA */}
-            <a
-              href="https://1922182.my1003app.com" target="_blank" rel="noopener noreferrer"
-              onClick={() => setOpen(false)}
-              className="btn btn-primary"
-              style={{
-                marginTop: 16, width: "100%", justifyContent: "center",
-                padding: "18px 22px", fontSize: 15.5,
-              }}
-            >
-              Start a secure application <Icon.arrow size={16} />
-            </a>
+            {/* Nav links */}
+            <div style={{ flex: 1, overflowY: "auto", padding: "8px 0" }}>
+              {links.map((l) => (
+                <a key={l} href={`#${l.toLowerCase()}`} onClick={() => setOpen(false)} style={{
+                  display: "flex", alignItems: "center", justifyContent: "space-between",
+                  padding: "16px 20px",
+                  fontFamily: "var(--sans)", fontSize: 16, fontWeight: 500,
+                  color: "var(--ink)", letterSpacing: "-0.01em",
+                  borderBottom: "1px solid #F2EFE8",
+                  textDecoration: "none",
+                }}>
+                  <span>{l}</span>
+                  <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: 0.35 }}>
+                    <polyline points="7,4 13,10 7,16"/>
+                  </svg>
+                </a>
+              ))}
+            </div>
+
+            {/* Bottom section */}
+            <div style={{ padding: "16px 20px 32px", borderTop: "1px solid #EEEBE4", flexShrink: 0 }}>
+              {/* Contact */}
+              <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 16 }}>
+                <a href="tel:+18326292892" onClick={() => setOpen(false)} style={{
+                  display: "flex", alignItems: "center", gap: 10,
+                  fontFamily: "var(--mono)", fontSize: 14, color: "var(--ink)",
+                  textDecoration: "none",
+                }}>
+                  <span style={{
+                    width: 32, height: 32, borderRadius: 8, background: "#F4F1EB",
+                    display: "inline-flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
+                  }}><Icon.phone size={15} /></span>
+                  (832) 629-2892
+                </a>
+                <a href="mailto:shion@ravihomeloans.com" onClick={() => setOpen(false)} style={{
+                  display: "flex", alignItems: "center", gap: 10,
+                  fontSize: 13, color: "var(--muted)",
+                  textDecoration: "none",
+                }}>
+                  <span style={{
+                    width: 32, height: 32, borderRadius: 8, background: "#F4F1EB",
+                    display: "inline-flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
+                  }}><Icon.mail size={15} /></span>
+                  shion@ravihomeloans.com
+                </a>
+              </div>
+              {/* Apply CTA */}
+              <a
+                href="https://1922182.my1003app.com" target="_blank" rel="noopener noreferrer"
+                onClick={() => setOpen(false)}
+                className="btn btn-primary"
+                style={{ width: "100%", justifyContent: "center", padding: "15px 20px", fontSize: 15 }}
+              >
+                Apply Now <Icon.arrow size={15} />
+              </a>
+            </div>
           </div>
-        </div>,
+        </>,
         document.body
       )}
     </nav>
