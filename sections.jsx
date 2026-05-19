@@ -62,38 +62,100 @@ function Nav() {
         </div>
       </div>
 
-      {/* Mobile menu drawer */}
+      {/* Mobile menu drawer — full-screen, solid background */}
       {open && (
         <div
-          onClick={() => setOpen(false)}
           style={{
-            position: "fixed", inset: "68px 0 0 0", zIndex: 49,
-            background: "var(--canvas)",
-            padding: "32px 24px",
-            display: "flex", flexDirection: "column", gap: 4,
-            animation: "fadeUp .25s ease both",
+            position: "fixed", inset: 0, zIndex: 9999,
+            background: "#F6F2EA",
+            display: "flex", flexDirection: "column",
+            animation: "fadeUp .2s ease both",
           }}
         >
-          {links.map((l) => (
-            <a key={l} href={`#${l.toLowerCase()}`} onClick={() => setOpen(false)} style={{
-              display: "block", padding: "18px 8px",
-              fontFamily: "var(--serif)", fontSize: 26, fontWeight: 500,
-              color: "var(--ink)", borderBottom: "1px solid var(--hairline)",
-            }}>{l}</a>
-          ))}
-          <a href="tel:+18326292892" onClick={() => setOpen(false)} style={{
-            display: "inline-flex", alignItems: "center", gap: 10,
-            marginTop: 28, padding: "16px 0",
-            fontFamily: "var(--mono)", fontSize: 16, color: "var(--ink)",
+          {/* Menu header — mirrors nav with close button */}
+          <div style={{
+            display: "flex", alignItems: "center", justifyContent: "space-between",
+            padding: "12px 18px", height: 56,
+            borderBottom: "1px solid var(--hairline)",
+            background: "#F6F2EA",
           }}>
-            <Icon.phone size={18} /> (832) 629-2892
-          </a>
-          <a href="mailto:shion@ravihomeloans.com" onClick={() => setOpen(false)} style={{
-            display: "inline-flex", alignItems: "center", gap: 10, padding: "8px 0",
-            fontSize: 15, color: "var(--muted)",
+            <Wordmark />
+            <button
+              aria-label="Close menu"
+              onClick={() => setOpen(false)}
+              style={{
+                background: "transparent", border: "1px solid var(--hairline)",
+                borderRadius: 8, width: 42, height: 42, padding: 0,
+                display: "inline-flex", alignItems: "center", justifyContent: "center", cursor: "pointer",
+              }}
+            >
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+                <line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/>
+              </svg>
+            </button>
+          </div>
+
+          {/* Menu content */}
+          <div style={{
+            flex: 1, overflowY: "auto",
+            padding: "24px 24px 32px",
+            display: "flex", flexDirection: "column",
           }}>
-            <Icon.mail size={16} /> shion@ravihomeloans.com
-          </a>
+            {/* Big section links */}
+            <nav style={{ display: "flex", flexDirection: "column" }}>
+              {links.map((l, i) => (
+                <a key={l} href={`#${l.toLowerCase()}`} onClick={() => setOpen(false)} style={{
+                  display: "flex", alignItems: "center", justifyContent: "space-between",
+                  padding: "20px 4px",
+                  fontFamily: "var(--serif)", fontSize: 26, fontWeight: 500,
+                  color: "var(--ink)", letterSpacing: "-0.01em",
+                  borderBottom: i < links.length - 1 ? "1px solid var(--hairline)" : "none",
+                }}>
+                  <span>{l}</span>
+                  <span style={{ color: "var(--muted)" }}><Icon.arrow size={18} /></span>
+                </a>
+              ))}
+            </nav>
+
+            {/* Spacer */}
+            <div style={{ flex: 1, minHeight: 24 }} />
+
+            {/* Contact block */}
+            <div style={{
+              marginTop: 24, padding: 20,
+              background: "var(--paper)",
+              border: "1px solid var(--hairline)",
+              borderRadius: 14,
+              display: "flex", flexDirection: "column", gap: 14,
+            }}>
+              <div className="eyebrow">Get in touch</div>
+              <a href="tel:+18326292892" onClick={() => setOpen(false)} style={{
+                display: "flex", alignItems: "center", gap: 12,
+                fontFamily: "var(--mono)", fontSize: 17, color: "var(--ink)", fontWeight: 500,
+              }}>
+                <Icon.phone size={18} /> (832) 629-2892
+              </a>
+              <a href="mailto:shion@ravihomeloans.com" onClick={() => setOpen(false)} style={{
+                display: "flex", alignItems: "center", gap: 12,
+                fontSize: 15, color: "var(--ink)",
+              }}>
+                <Icon.mail size={16} /> shion@ravihomeloans.com
+              </a>
+            </div>
+
+            {/* Apply CTA */}
+            <a
+              href="https://1922182.my1003app.com" target="_blank" rel="noopener noreferrer"
+              onClick={() => setOpen(false)}
+              className="btn btn-primary"
+              style={{
+                marginTop: 16, width: "100%", justifyContent: "center",
+                padding: "18px 22px", fontSize: 15.5,
+              }}
+            >
+              Start a secure application <Icon.arrow size={16} />
+            </a>
+          </div>
         </div>
       )}
     </nav>
