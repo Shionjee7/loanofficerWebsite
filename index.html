@@ -212,104 +212,77 @@
   input[type="number"] { -moz-appearance: textfield; }
 
   /* ═══════════════════════════════════════════════════════════
-     RESPONSIVE — works on every device from 320px → 4K
+     RESPONSIVE — 320px (iPhone SE) → 4K desktop
   ═══════════════════════════════════════════════════════════ */
-
   html { -webkit-text-size-adjust: 100%; }
   body { overflow-x: hidden; }
-  img, svg, video { max-width: 100%; height: auto; }
+  *, *::before, *::after { min-width: 0; }
+  img, svg { max-width: 100%; }
+  section, header, footer { overflow: hidden; }
 
-  /* Container is fluid by default */
-  .container { padding: 0 24px; }
-
-  /* ── TABLET (≤1024px) ── */
+  /* ── TABLET ≤1024px ── */
   @media (max-width: 1024px) {
-    .container { padding: 0 24px; }
-    .h-section { font-size: 38px !important; }
+    .h-section { font-size: 36px !important; }
   }
 
-  /* ── SMALL TABLET / LARGE PHONE (≤900px) ── stack all 2-col layouts */
+  /* ── SMALL TABLET ≤900px — stack 2-col layouts ── */
   @media (max-width: 900px) {
-    .hero-grid     { grid-template-columns: 1fr !important; gap: 32px !important; }
-    .hero-grid > aside { order: -1; }
-    .about-grid    { grid-template-columns: 1fr !important; gap: 40px !important; }
+    .hero-grid    { grid-template-columns: 1fr !important; gap: 28px !important; }
+    .hero-card    { order: 2; }                  /* card goes BELOW the text */
+    .about-grid   { grid-template-columns: 1fr !important; gap: 40px !important; }
     .about-portrait { max-width: 260px !important; margin: 0 auto !important; }
-    .calc-grid     { grid-template-columns: 1fr !important; gap: 28px !important; padding: 24px !important; }
-    .apply-grid    { grid-template-columns: 1fr !important; gap: 36px !important; }
-    .footer-grid   { grid-template-columns: 1fr !important; gap: 36px !important; }
+    .calc-grid    { grid-template-columns: 1fr !important; gap: 24px !important; padding: 24px !important; }
+    .apply-grid   { grid-template-columns: 1fr !important; gap: 32px !important; }
+    .footer-grid  { grid-template-columns: 1fr !important; gap: 36px !important; }
     .products-grid { grid-template-columns: repeat(2, 1fr) !important; }
-    .process-grid  { grid-template-columns: repeat(2, 1fr) !important; gap: 28px !important; }
-    .process-line  { display: none !important; }
+    .process-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 24px !important; }
+    .process-line { display: none !important; }
   }
 
-  /* ── PHONE (≤640px) ── single column everything */
+  /* ── PHONE ≤640px — single column, comfortable spacing ── */
   @media (max-width: 640px) {
-    .container { padding: 0 18px; }
-    .nav-links { display: none !important; }
+    .container    { padding: 0 18px; }
+    .nav-links    { display: none !important; }
     .nav-phone-text { display: none !important; }
-    .nav-inner { height: 56px !important; }
-
-    .h-section { font-size: 28px !important; line-height: 1.1 !important; }
+    .nav-inner    { height: 56px !important; }
+    .h-section    { font-size: 26px !important; line-height: 1.15 !important; }
+    .h-display    { font-size: clamp(32px, 8.5vw, 42px) !important; }
 
     .products-grid  { grid-template-columns: 1fr !important; }
     .products-header { grid-template-columns: 1fr !important; }
     .products-header > a.btn { display: none !important; }
-    .process-grid   { grid-template-columns: 1fr !important; gap: 22px !important; }
-    .about-bullets  { grid-template-columns: 1fr !important; }
+    .process-grid   { grid-template-columns: 1fr !important; gap: 20px !important; }
+    .about-bullets  { grid-template-columns: 1fr !important; gap: 12px !important; }
     .footer-bottom  { flex-direction: column !important; align-items: flex-start !important; gap: 8px !important; }
 
-    /* Section padding — tight */
-    #top        { padding: 28px 0 48px !important; }
+    /* Hero card — full width, proper padding */
+    .hero-card      { padding: 24px !important; }
+    .hero-card h2   { font-size: 22px !important; }
+
+    /* Section padding */
+    #top        { padding: 32px 0 48px !important; }
     #loans      { padding: 56px 0 48px !important; }
     #about      { padding: 56px 0 !important; }
     #process    { padding: 56px 0 !important; }
     #calculator { padding: 56px 0 !important; }
     #apply      { padding: 56px 0 !important; }
-    footer      { padding-top: 56px !important; }
+    footer      { padding-top: 48px !important; padding-bottom: 24px !important; }
 
-    /* Calculator inner output card */
-    .calc-card > div > div[style*="var(--field)"],
-    .calc-card > div:last-child { padding: 20px !important; }
+    /* Apply card */
+    #apply .card   { padding: 28px !important; }
+    #apply .card h3 { font-size: 26px !important; }
   }
 
-  /* ── SMALL PHONE (≤420px) — iPhone SE, older androids ── */
+  /* ── SMALL PHONE ≤420px — iPhone SE / mini ── */
   @media (max-width: 420px) {
-    .container { padding: 0 14px; }
-    .h-section { font-size: 26px !important; }
-    .btn { padding: 11px 14px !important; font-size: 13px !important; }
+    .container  { padding: 0 14px; }
+    .h-section  { font-size: 24px !important; }
+    .btn        { padding: 12px 14px !important; font-size: 13.5px !important; }
   }
 
-  /* ── HERO text scaling — uses clamp already, but make extra-aggressive ── */
-  @media (max-width: 640px) {
-    .h-display { font-size: clamp(34px, 9vw, 44px) !important; }
-  }
-
-  /* ── Make sure cards/sections never overflow viewport ── */
-  section, header, footer { overflow: hidden; }
-  .card { max-width: 100%; }
-
-  /* ── Calculator donut + breakdown stacks on small phones ── */
-  @media (max-width: 480px) {
-    .calc-card svg { width: 140px !important; height: 140px !important; }
-  }
-
-  /* ── Tap targets — minimum 44px on touch ── */
+  /* ── Touch devices — bigger tap targets ── */
   @media (hover: none) and (pointer: coarse) {
-    .btn { min-height: 44px; }
-    a { min-height: 24px; }
-  }
-
-  /* ── Cap fonts inside hero card / apply card on small phones ── */
-  @media (max-width: 640px) {
-    .hero-grid aside { padding: 24px !important; }
-    .hero-grid aside h2 { font-size: 24px !important; }
-    #apply .card { padding: 28px !important; }
-    #apply .card h3 { font-size: 28px !important; }
-  }
-
-  /* ── Wordmark text shrinks on tiny phones ── */
-  @media (max-width: 420px) {
-    .nav-inner span[style*="font-size: 20px"] { font-size: 17px !important; }
+    .btn { min-height: 48px; }
   }
 </style>
 </head>

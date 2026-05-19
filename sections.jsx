@@ -52,103 +52,64 @@ function Hero() {
           "radial-gradient(900px 420px at 18% -10%, color-mix(in oklab, var(--primary), white 80%), transparent 70%)",
         opacity: 0.6, pointerEvents: "none",
       }}/>
-      <div className="container" style={{
+
+      {/* ── DESKTOP layout: two-column ── */}
+      <div className="container hero-grid" style={{
         position: "relative",
         display: "grid", gridTemplateColumns: "1.05fr 0.95fr", gap: 56, alignItems: "center",
-      }} className="hero-grid">
+      }}>
+        {/* Left: intro */}
         <div className="fade-up">
           <div className="eyebrow" style={{ display: "inline-flex", alignItems: "center", gap: 10 }}>
-            <span style={{
-              width: 6, height: 6, borderRadius: "50%", background: "var(--good)",
-              display: "inline-block",
-            }}/>
+            <span style={{ width: 6, height: 6, borderRadius: "50%", background: "var(--good)", display: "inline-block" }}/>
             NMLS #2715865 · Mortgage Loan Officer
           </div>
 
-          <h1 className="h-display" style={{
-            fontSize: "clamp(48px, 5.6vw, 76px)",
-            margin: "20px 0 22px",
-          }}>
+          <h1 className="h-display" style={{ fontSize: "clamp(36px, 5.6vw, 76px)", margin: "20px 0 22px" }}>
             Hi, I'm Shion.<br/>
             <span style={{ fontStyle: "italic", color: "var(--primary)" }}>Let's talk about a mortgage.</span>
           </h1>
 
-          <p style={{
-            fontSize: 19, lineHeight: 1.5, color: "var(--muted)",
-            maxWidth: 520, marginBottom: 36, textWrap: "pretty",
-          }}>
+          <p style={{ fontSize: 19, lineHeight: 1.5, color: "var(--muted)", maxWidth: 520, marginBottom: 36, textWrap: "pretty" }}>
             I'm a mortgage loan officer who works mostly with first-time buyers.
-            Call, text, or email and we'll figure out what fits — no pressure,
-            no pre-canned pitch.
+            Call, text, or email and we'll figure out what fits — no pressure, no pre-canned pitch.
           </p>
 
-          <div style={{
-            display: "flex", gap: 14, paddingTop: 28, flexWrap: "wrap",
-            borderTop: "1px solid var(--hairline)",
-          }}>
-            <a href="tel:+18326292892" className="btn btn-primary">
-              <Icon.phone size={14} /> (832) 629-2892
-            </a>
+          <div style={{ display: "flex", gap: 14, paddingTop: 28, flexWrap: "wrap", borderTop: "1px solid var(--hairline)" }}>
+            <a href="tel:+18326292892" className="btn btn-primary"><Icon.phone size={14} /> (832) 629-2892</a>
             <a href="sms:+18326292892" className="btn btn-ghost">Text me</a>
-            <a href="mailto:shion@ravihomeloans.com" className="btn btn-ghost">
-              <Icon.mail size={14} /> Email
-            </a>
+            <a href="mailto:shion@ravihomeloans.com" className="btn btn-ghost"><Icon.mail size={14} /> Email</a>
           </div>
         </div>
 
-        {/* Right: clean "start here" card — no rate or payment promises */}
-        <aside className="card" style={{
+        {/* Right: CTA card */}
+        <aside className="card hero-card" style={{
           padding: 36,
           boxShadow: "0 1px 0 var(--hairline), 0 30px 60px -30px rgba(11,23,38,0.18)",
         }}>
           <div className="eyebrow">Start here</div>
-          <h2 style={{
-            fontFamily: "var(--serif)", fontSize: 32, fontWeight: 500,
-            letterSpacing: "-0.02em", lineHeight: 1.15,
-            margin: "12px 0 12px",
-          }}>
+          <h2 style={{ fontFamily: "var(--serif)", fontSize: 28, fontWeight: 500, letterSpacing: "-0.02em", lineHeight: 1.2, margin: "12px 0 12px" }}>
             The first conversation is just figuring out what fits.
           </h2>
-          <p style={{
-            fontSize: 15.5, lineHeight: 1.55, color: "var(--muted)",
-            margin: "0 0 24px", textWrap: "pretty",
-          }}>
-            Whether you're curious or ready to write an offer this week —
-            start the application or pick up the phone.
+          <p style={{ fontSize: 15.5, lineHeight: 1.55, color: "var(--muted)", margin: "0 0 24px", textWrap: "pretty" }}>
+            Whether you're curious or ready to write an offer this week — start the application or pick up the phone.
           </p>
 
-          <a
-            href="https://1922182.my1003app.com"
-            target="_blank"
-            rel="noopener noreferrer"
+          <a href="https://1922182.my1003app.com" target="_blank" rel="noopener noreferrer"
             className="btn btn-primary"
-            style={{
-              width: "100%", justifyContent: "center",
-              padding: "16px 22px", fontSize: 15.5,
-              boxShadow: "0 14px 28px -14px color-mix(in oklab, var(--primary), black 20%)",
-            }}
-          >
+            style={{ width: "100%", justifyContent: "center", padding: "16px 22px", fontSize: 15.5,
+              boxShadow: "0 14px 28px -14px color-mix(in oklab, var(--primary), black 20%)" }}>
             Start a secure application <Icon.arrow size={16} />
           </a>
 
-          <div style={{
-            marginTop: 14, paddingTop: 18, borderTop: "1px solid var(--hairline)",
-            display: "flex", justifyContent: "space-between", alignItems: "center",
-            fontSize: 13.5, color: "var(--muted)",
-          }}>
+          <div style={{ marginTop: 14, paddingTop: 18, borderTop: "1px solid var(--hairline)",
+            display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: 13.5, color: "var(--muted)" }}>
             <span>Rather talk first?</span>
-            <a href="tel:+18326292892" style={{
-              display: "inline-flex", alignItems: "center", gap: 8,
-              color: "var(--ink)", fontFamily: "var(--mono)",
-            }}>
+            <a href="tel:+18326292892" style={{ display: "inline-flex", alignItems: "center", gap: 8, color: "var(--ink)", fontFamily: "var(--mono)" }}>
               <Icon.phone /> (832) 629-2892
             </a>
           </div>
-
-          <p style={{
-            marginTop: 16, fontSize: 11, lineHeight: 1.5,
-            color: "var(--muted)", textAlign: "center", margin: "16px 0 0",
-          }}>
+          <p style={{ marginTop: 16, fontSize: 11, lineHeight: 1.5, color: "var(--muted)", textAlign: "center" }}>
             Not a commitment to lend. All loans subject to credit approval and underwriting.
           </p>
         </aside>
